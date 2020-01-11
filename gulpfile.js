@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var base64 = require('gulp-base64-inline');
 
-gulp.task('convert', function () {
+function defaultTask() {
     return gulp.src('src/test.csv')
         .pipe(base64('images/',{
             prefix: "",
@@ -9,5 +9,7 @@ gulp.task('convert', function () {
             includeMime: false
         }))
         .pipe(gulp.dest('dist/'));
-    }
-);
+}
+
+
+exports.default = defaultTask

@@ -2,9 +2,10 @@
   "name": "csv-image-to-base64",
   "version": "1.0.0",
   "description": "Convert image inline to base64",
-  "main": "index.js",
+  "main": "app.js",
+  "bin": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp"
   },
   "repository": {
     "type": "git",
