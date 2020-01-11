@@ -18,5 +18,8 @@
   "homepage": "https://github.com/inuris/csv-image-to-base64#readme",
   "devDependencies": {
     "gulp": "^4.0.2"
+  },
+  "dependencies": {
+    "gulp-base64-inline": "^1.0.6"
   }
 }
