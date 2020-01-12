@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "Convert image inline to base64",
   "main": "app.js",
-  "bin": "app.js",
+  "bin": {
+    "convert": "./app.js"
+  },
   "scripts": {
-    "start": "gulp"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -17,10 +19,9 @@
     "url": "https://github.com/inuris/csv-image-to-base64/issues"
   },
   "homepage": "https://github.com/inuris/csv-image-to-base64#readme",
-  "devDependencies": {
-    "gulp": "^4.0.2"
-  },
   "dependencies": {
-    "gulp-base64-inline": "^1.0.6"
+    "fs": "0.0.1-security",
+    "glob": "^7.1.6",
+    "path": "^0.12.7"
   }
 }
