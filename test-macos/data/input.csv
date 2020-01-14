@@ -2,3 +2,6 @@ id,type,name,Tên,default_code,barcode,list_price,producer,origin/id,cost,uom_id
 __export__.product_template_34_5_1_3112,Storable Product,"Desk mount Kit for use with LGM19             
 ECDIS Pedestal   ","Desk mount Kit for use with LGM19             
 ECDIS Pedestal   ",LGDM19_,34.5.1.3112,15299000,Lilley & Gillie,base.uk,1,uom.product_uom_unit,__export__.product_category_4959_616f688a,Thuế GTGT phải nộp 10%,34.5.1,,uom.product_uom_unit,odooimage(34.5.1.3112)
+__export__.product_template_34_5_1_3112,Storable Product,"Desk mount Kit for use with LGM19             
+ECDIS Pedestal","Desk mount Kit for use with LGM19             
+ECDIS Pedestal",LGDM19_,34.5.1.3112,15299000,Lilley & Gillie,base.uk,1,uom.product_uom_unit,__export__.product_category_4959_616f688a,Thuế GTGT phải nộp 10%,34.5.1,,uom.product_uom_unit,odooimage(34.5.1.3113)
