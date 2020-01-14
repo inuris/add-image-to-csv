@@ -7,7 +7,7 @@ const glob = require('glob');
 const INPUT_EXT = "csv";
 const IMAGE_EXT = "jpg,png,gif";
 const SUFFIX = "_converted";
-const REGEX = RegExp('inline\\\(([^\)]+)\\\)', 'g');
+const REGEX = RegExp('odooimage\\\(([^\)]+)\\\)', 'g');
 
 const dataPath = "./data";
 
