@@ -11,13 +11,15 @@ const REGEX = RegExp('odooimage\\\(([^\)]+)\\\)', 'g');
 
 const dataPath = "./data";
 
-
+console.log("Start convert");
 glob(dataPath + "/*." + INPUT_EXT, function (er, files) {
   files.forEach(e => {
+    console.log("Processing: "+ e);
     let csvPath = e;
     toBase64(csvPath);
   });
 })
+console.log("End convert");
 
 function toBase64(inputPath) {
   fs.readFile(inputPath, 'utf8', function (err, data) {
@@ -51,18 +53,3 @@ function toBase64(inputPath) {
 
   });
 }
-
-
-
-// var childProcess = require('child_process');
-
-// console.log("process.cwd() = " + process.cwd());
-// childProcess.exec('npm start', (err, stdout) => {
-//     if (err) 
-//         console.log(err);
-
-//     console.log(stdout);
-// })
-
-
-
