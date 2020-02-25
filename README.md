@@ -1,2 +1,2 @@
-# csv-image-to-base64
-Convert image inline to base64
+# add-image-to-csv
+Convert images to base64 and add to CSV file
