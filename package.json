@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start":  "node app.js",
-    "buildm": "nexe app.js -t macos-10.13.0 -o test-macos/app",
-    "buildw": "nexe app.js -t win32-x86-10.13.0 -o test-win32/app.exe"
+    "buildm": "nexe app.js -t macos-10.13.0 -o test-macos/AddImageToCSV",
+    "buildw": "nexe app.js -t win32-x86-10.13.0 -o test-win32/AddImageToCSV.exe"
   },
   "repository": {
     "type": "git",
