@@ -6,19 +6,19 @@ const glob = require('glob');
 
 const INPUT_EXT = "csv";
 const IMAGE_EXT = "jpg,png,gif";
-const SUFFIX = ""; // Output csv suffix
+const SUFFIX = ""; // Output csv suffix, "" means replace original files
 const REGEX = RegExp('odooimage\\\(([^\)]+)\\\)', 'g');
 
-const MAIN_PATH = "./data";  // Input csv path is same as exe location
-const IMAGES_PATH = "images";
-const ERROR_PATH = "error.log";
+const CSV_PATH = "./csv";  // Input csv path is same as exe location
+const IMAGES_PATH = "./images";
+const ERROR_PATH = "./error.log";
 
 var error = "";
 
 console.log("Start convert");
-glob(MAIN_PATH + "/*." + INPUT_EXT, function (er, files) {
+glob(CSV_PATH + "/*." + INPUT_EXT, function (er, files) {
   files.forEach(e => {
-    console.log("Processing: "+ e);
+    console.log("Processing: " + e);
     let csvPath = e;
     toBase64(csvPath);
   });
@@ -32,12 +32,12 @@ function toBase64(inputPath) {
     }
 
     function inline(matchText, match_1) {
-      console.log(matchText+" "+match_1);
+      console.log(matchText + " " + match_1);
       let imageName = match_1.replace(/['"]/g, '');
 
       // Read all images in images folder
-      try{
-        let files = glob.sync(path.join(MAIN_PATH,IMAGES_PATH,imageName + ".{" + IMAGE_EXT + "}"));
+      try {
+        let files = glob.sync(path.join(IMAGES_PATH, imageName + ".{" + IMAGE_EXT + "}"));
         if (files) {
           let fileData = fs.readFileSync(files[0]);
           let fileBase64 = Buffer.from(fileData).toString('base64');
@@ -45,26 +45,27 @@ function toBase64(inputPath) {
         }
         return matchText;
       }
-      catch (e){
+      catch (e) {
         console.log("File not found:" + imageName);
-        error += imageName +"\n";
+        error += imageName + "\n";
         return matchText;
-      } 
-    }     
+      }
+    }
+
     if (REGEX.test(data)) {
-      let ext = path.extname(inputPath);      
-      let outputPath = path.join(MAIN_PATH, path.basename(inputPath, ext) + SUFFIX + ext);
-      
+      let ext = path.extname(inputPath);
+      let outputPath = path.join(CSV_PATH, path.basename(inputPath, ext) + SUFFIX + ext);
+
       console.log("Converted: " + inputPath + " >> " + outputPath);
       let result = data.replace(REGEX, inline);
       fs.writeFile(outputPath, result, 'utf8', function (err) {
         if (err) return console.log(err);
-      });         
+      });
     }
 
-    let errorPath = path.join(MAIN_PATH, ERROR_PATH);
+    let errorPath = ERROR_PATH;
     console.log(error);
-    if (error === ""){  
+    if (error === "") {
       console.log("Deleting error.log");
       fs.unlink(errorPath, (err) => {
         if (err) {
@@ -72,11 +73,11 @@ function toBase64(inputPath) {
         }
       });
     }
-    else{
+    else {
       fs.writeFile(errorPath, error, 'utf8', function (err) {
         if (err) return console.log(err);
       });
-    }  
+    }
 
   });
 }
