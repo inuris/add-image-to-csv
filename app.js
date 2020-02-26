@@ -12,10 +12,17 @@ const REGEX = RegExp('odooimage\\\(([^\)]+)\\\)', 'g');
 const CSV_PATH = "./csv";  // Input csv path is same as exe location
 const IMAGES_PATH = "./images";
 const ERROR_PATH = "./error.log";
+const SUCCESS_PATH = "./success.log";
 
 var error = "";
 
+// Delete all log files
+fs.unlink(ERROR_PATH, (err) => {});
+fs.unlink(SUCCESS_PATH, (err) => {});
+
 console.log("Start convert");
+
+
 glob(CSV_PATH + "/*." + INPUT_EXT, function (er, files) {
   files.forEach(e => {
     console.log("Processing: " + e);
@@ -63,18 +70,13 @@ function toBase64(inputPath) {
       });
     }
 
-    let errorPath = ERROR_PATH;
-    console.log(error);
-    if (error === "") {
-      console.log("Deleting error.log");
-      fs.unlink(errorPath, (err) => {
-        if (err) {
-          console.error(err)
-        }
-      });
+    if (error === "") { 
+      fs.writeFile(SUCCESS_PATH, "Successfully converted", 'utf8', function (err) {
+        if (err) return console.log(err);
+      }); 
     }
     else {
-      fs.writeFile(errorPath, error, 'utf8', function (err) {
+      fs.writeFile(ERROR_PATH, error, 'utf8', function (err) {
         if (err) return console.log(err);
       });
     }
